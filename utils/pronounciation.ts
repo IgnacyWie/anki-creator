@@ -16,13 +16,15 @@ const queryPronounciation = async (keyword: string): Promise<string | null> => {
 
     // Fetch the API response
     const response = await fetch(url);
+
+
     if (!response.ok) {
+      console.log(response)
       console.error(`Error fetching data from Forvo API: ${response.statusText}`);
       return null;
     }
 
     const data = await response.json();
-    console.log(data)
 
     // Check if there are pronunciations available
     if (!data.items || data.items.length === 0) {

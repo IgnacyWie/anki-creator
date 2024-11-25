@@ -14,7 +14,7 @@ async function createAnkiDeck() {
 
   // Read and parse input file
   const content = await fs.readFile(inputPath, "utf-8");
-  const words = JSON.parse(content).splice(0, 2);
+  const words = JSON.parse(content).splice(0, 200);
 
   // Process each word
   for (const word of words) {
