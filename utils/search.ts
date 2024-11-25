@@ -5,6 +5,8 @@ import fetch from "node-fetch";
 import fs from "fs";
 import path from "path";
 
+const IMAGE_FOLDER = "media/images";
+
 const queryGoogleImages = async (keyword: string): Promise<string | null> => {
   const apiKey = process.env.GOOGLE_SEARCH_API_KEY;
   const cx = process.env.GOOGLE_CX; // Add your search engine ID here
@@ -35,7 +37,7 @@ const queryGoogleImages = async (keyword: string): Promise<string | null> => {
     const buffer = await imageResponse.buffer();
 
     const fileName = `${keyword.replace(/\s+/g, "_")}_${Date.now()}.jpg`;
-    const filePath = path.join(__dirname, fileName);
+    const filePath = path.join(__dirname, '../', IMAGE_FOLDER, fileName);
 
     fs.writeFileSync(filePath, buffer);
 
@@ -47,4 +49,4 @@ const queryGoogleImages = async (keyword: string): Promise<string | null> => {
   }
 };
 
-export default queryGoogleImages;
+export { queryGoogleImages };
