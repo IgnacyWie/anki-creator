@@ -5,7 +5,8 @@ import AnkiExport from "anki-apkg-export";
 import { promises as fs } from "fs";
 import path from "path";
 
-const inputPath = "./output.json";
+const inputPath = "./input.json";
+const outputPath = "./output.json";
 const DECK_NAME = "Dutch Vocabulary";
 
 async function createAnkiDeck() {
@@ -14,7 +15,7 @@ async function createAnkiDeck() {
 
   // Read and parse input file
   const content = await fs.readFile(inputPath, "utf-8");
-  const words = JSON.parse(content).splice(0, 200);
+  const words = JSON.parse(content).splice(0, 499);
 
   // Process each word
   for (const word of words) {
