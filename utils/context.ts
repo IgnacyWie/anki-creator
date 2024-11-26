@@ -2,13 +2,13 @@ import Reverso from 'reverso-api'
 
 const reverso = new Reverso()
 
-export const queryContext = async (word: string): Promise<{ source: string, target: string }> => {
+export const queryContext = async (word: string): Promise<{ source: string, target: string } | null> => {
   const data = await reverso.getContext(word, 'dutch', 'english')
 
   // get the first example
   if (!data.examples || !data.examples.length) {
     console.error('No examples found')
-    return
+    return null
   }
 
   const example = data.examples[0]
@@ -17,6 +17,6 @@ export const queryContext = async (word: string): Promise<{ source: string, targ
   const regex = new RegExp(`\\b(${word})\\b`, 'gi'); // Match the word case-insensitively
   example.source = example.source.replace(regex, '<strong>$1</strong>');
 
-  console.log(example)
+  console.log(`Context for ${word} fetched successfully`)
   return example
 }

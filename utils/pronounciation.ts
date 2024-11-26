@@ -19,7 +19,6 @@ const queryPronounciation = async (keyword: string): Promise<string | null> => {
 
 
     if (!response.ok) {
-      console.log(response)
       console.error(`Error fetching data from Forvo API: ${response.statusText}`);
       return null;
     }
@@ -59,7 +58,7 @@ const queryPronounciation = async (keyword: string): Promise<string | null> => {
     const audioBuffer = await audioResponse.buffer();
     fs.writeFileSync(filePath, audioBuffer);
 
-    console.log(`Audio saved at: ${filePath}`);
+    console.log(`Audio for ${keyword} saved at: ${filePath}`);
     return filePath;
   } catch (error) {
     console.error(`Error in queryPronounciation: ${error.message}`);

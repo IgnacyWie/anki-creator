@@ -25,7 +25,6 @@ const queryGoogleImages = async (keyword: string): Promise<string | null> => {
   try {
     const response = await fetch(searchUrl);
     const data = await response.json();
-    console.log(data)
 
     if (!data.items || data.items.length === 0) {
       console.error("No image results found");
@@ -41,7 +40,7 @@ const queryGoogleImages = async (keyword: string): Promise<string | null> => {
 
     fs.writeFileSync(filePath, buffer);
 
-    console.log(`Image saved at ${filePath}`);
+    console.log(`Image for ${keyword} saved at ${filePath}`);
     return filePath;
   } catch (error) {
     console.error("Error during image search and save:", error);

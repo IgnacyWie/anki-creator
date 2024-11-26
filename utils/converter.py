@@ -23,7 +23,7 @@ for index, line in enumerate(data, start=1):
 json_result = json.dumps(result, indent=4, ensure_ascii=False)
 
 # Write to a JSON file
-with open("output.json", "w", encoding="utf-8") as json_file:
+with open("input.json", "w", encoding="utf-8") as json_file:
     json_file.write(json_result)
 
 print("JSON data has been written to 'output.json'")
